@@ -83,11 +83,11 @@ class MyData(data.Dataset):
         for img_anon in images_anon:
             # img_anon = img_anon.replace(' ', '\t')
 
-            img, label = img_anon.split(' ')
+            img, label = img_anon.split(' ') # for example:img:"train/43/003414.jpg" label:"0"
             images.append(img)
             labels.append(int(label))
 
-        classes = list(set(labels))
+        classes = list(set(labels)) # set:remove repeat value  classes:[0,1,2,...9]
 
         # Generate Index Dictionary for every class
         label_to_indices = defaultdict(list)
@@ -184,8 +184,8 @@ class Car196:
         # root should be the directory with images and train.txt, text.txt
         # example of train.txt can be found at datasets/example
 
-        train_txt = os.path.join(root, 'train.txt')
-        test_txt = os.path.join(root, 'test.txt')
+        train_txt = os.path.join(root, 'train.txt') # car196/train.txt
+        test_txt = os.path.join(root, 'test.txt') #car196/test.txt
         self.train = MyData(root, label_txt=train_txt, transform=transform_dict['rand-crop'])
         self.test = MyData(root, label_txt=test_txt, transform=transform_dict['center-crop'], triplet=False)
 
